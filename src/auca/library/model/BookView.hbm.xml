@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 6, 2020 1:50:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="auca.library.model.BookView" table="BOOK_VIEW" schema="AUCA" optimistic-lock="version">
+        <id name="bookid" type="string">
+            <column name="BOOKID" length="4" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="bookcategoryView" class="auca.library.model.BookcategoryView" fetch="select">
+            <column name="CATEGORYID" length="4" />
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="TITLE" length="40" />
+        </property>
+        <property name="publishinghouse" type="string">
+            <column name="PUBLISHINGHOUSE" length="40" />
+        </property>
+        <property name="dateofpublication" type="date">
+            <column name="DATEOFPUBLICATION" length="7" />
+        </property>
+        <property name="author" type="string">
+            <column name="AUTHOR" length="30" />
+        </property>
+        <property name="pages" type="big_decimal">
+            <column name="PAGES" precision="22" scale="0" />
+        </property>
+        <property name="numberofcopies" type="big_decimal">
+            <column name="NUMBEROFCOPIES" precision="22" scale="0" />
+        </property>
+        <set name="checkinoutViews" table="CHECKINOUT_VIEW" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BOOKID" length="4" />
+            </key>
+            <one-to-many class="auca.library.model.CheckinoutView" />
+        </set>
+    </class>
+</hibernate-mapping>

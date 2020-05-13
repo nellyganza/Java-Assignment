@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 6, 2020 1:50:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="auca.library.model.CheckinoutView" table="CHECKINOUT_VIEW" schema="AUCA" optimistic-lock="version">
+        <id name="opnumber" type="string">
+            <column name="OPNUMBER" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="clientView" class="auca.library.model.ClientView" fetch="select">
+            <column name="REGNO" length="4" />
+        </many-to-one>
+        <many-to-one name="bookView" class="auca.library.model.BookView" fetch="select">
+            <column name="BOOKID" length="4" />
+        </many-to-one>
+        <property name="datetime" type="date">
+            <column name="DATETIME" length="7" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="10" />
+        </property>
+        <property name="operationcategory" type="string">
+            <column name="OPERATIONCATEGORY" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>
